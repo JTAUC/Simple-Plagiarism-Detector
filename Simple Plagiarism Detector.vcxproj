@@ -129,12 +129,14 @@
   <ItemGroup>
     <ClCompile Include="BruteForceMatcher.cpp" />
     <ClCompile Include="Document.cpp" />
+    <ClCompile Include="Match.cpp" />
     <ClCompile Include="Simple Plagiarism Detector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BruteForceMatcher.h" />
     <ClInclude Include="Document.h" />
     <ClInclude Include="Includes.h" />
+    <ClInclude Include="Match.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
