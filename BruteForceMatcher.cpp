@@ -1,6 +1,6 @@
 #include "BruteForceMatcher.h"
 
-int BruteForceMatcher::runDetection(const Document& d, string pattern) {
+int BruteForceMatcher::runDetection(Document d, string pattern) {
 	string text = d.getFullText();
 	int n, m;
 	n = text.length() - 1;

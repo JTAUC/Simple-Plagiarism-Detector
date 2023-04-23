@@ -1,18 +1,15 @@
 #include "Document.h"
 
-Document::Document(string fileName) {
+Document::Document(std::string fileName) {
 	file_name = fileName;
-	file.open(file_name);
 	number_of_sentences = 0;
 	partitionDocument();
 }
 
-Document::~Document() {
-	file.close();
-}
-
-void Document::partitionDocument() {
-	string line, sentence;
+void Document::partitionDocument()  {
+	std::string line, sentence;
+	fstream file;
+	file.open(file_name);
 	while (!file.eof()) {
 		getline(file, line);
 		full_text += line;
@@ -27,20 +24,21 @@ void Document::partitionDocument() {
 			}
 		}
 	}
+	file.close();
 }
 
-void Document::printSentences() const {
+void Document::printSentences()    {
 	for (int i = 0; i < sentences.size(); i++) {
 		cout << sentences[i] << endl;
 	}
 }
 
- string Document::getFullText() const { return full_text; } 
+string Document::getFullText() { return full_text; }
 
-string Document::getFileName() const { return file_name; }
+string Document::getFileName() { return file_name; }
 
-void Document::getSentences(vector<string>& s) const { s = sentences; }
+vector<string> Document::getSentences() { return sentences; }
 
-int Document::getNumberOfSentences() const { return sentences.size(); }
+int Document::getNumberOfSentences() { return sentences.size(); }
 
 void Document::setFileName(string s) { file_name = s; }

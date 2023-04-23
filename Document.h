@@ -4,29 +4,29 @@
 class Document
 {
 private:
-	vector<string> sentences;
 	string full_text;
 	string file_name;
-	fstream file;
+
+	vector<string> sentences;
 
 	int number_of_sentences;
 
 	void partitionDocument();
 
 public:
+	
+
 	Document(string fileName);
 
-	~Document();
+	void printSentences(); //Prints all the sentences in a document.
 
-	void printSentences() const; //Prints all the sentences in a document.
+	string getFullText(); //Returns the full text of a document in one string.
 
-	string getFullText() const; //Returns the full text of a document in one string.
+	string getFileName(); //Returns the file name of the document.
 
-	string getFileName() const; //Returns the file name of the document.
+	vector<string> getSentences(); //Returns the sentences vector by reference.
 
-	void getSentences(vector<string>& s) const; //Returns the sentences vector by reference.
-
-	int getNumberOfSentences() const; //Returns number of sentences in the document.
+	int getNumberOfSentences(); //Returns number of sentences in the document.
 
 	void setFileName(string s); //Set the file name of the document.
 

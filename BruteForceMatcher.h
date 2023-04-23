@@ -6,7 +6,7 @@ class BruteForceMatcher
 private:
 
 public:
-	int runDetection(const Document& d, string pattern);
+	int runDetection(Document d, string pattern);
 
 	int runDetection(string text, string pattern);
 
