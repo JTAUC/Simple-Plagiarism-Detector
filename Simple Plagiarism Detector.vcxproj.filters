@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Simple Plagiarism Detector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Document.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,6 +22,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Match.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RabinKarp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Match.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RabinKarp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,9 +2,11 @@
 #include "Document.h"
 #include "BruteForceMatcher.h"
 #include "Match.h"
+#include "RabinKarp.h"
 
-vector<Match> exact_matches;
+vector<Match> BF_exact_matches, RK_exact_matches;
 BruteForceMatcher BFMatcher;
+RabinKarp RabinKarpMatcher;
 
 //Calculates hamming distance between each sentence in two documents, 
 //if it is less than a given constant it is considered plagiarism.
@@ -31,7 +33,20 @@ void BruteForce(Document d1, Document d2) {
     for (int i = 0; i < d2.getSentences().size(); i++) { //Sentence Matching
         int index = BFMatcher.runDetection(d1, d2_sentences[i]);
         if (index != -1) {
-            exact_matches.push_back(Match(i, index, d2_sentences[i], d1.getFileName()));
+            BF_exact_matches.push_back(Match(i, index, d2_sentences[i], d1.getFileName()));
+        }
+    }
+}
+
+void RabinKarpFunc(Document d1, Document d2) {
+    vector<string> d1_sentences = d1.getSentences(), d2_sentences = d2.getSentences();
+
+    for (int i = 0; i < d1.getSentences().size(); i++) { //Sentence Matching
+        for (int j = 0; j < d2.getSentences().size(); j++) {
+            int index = 0;
+            if (RabinKarpMatcher.runDetection(d1_sentences[i], d2_sentences[j], index)) {
+                RK_exact_matches.push_back(Match(i, index, d2_sentences[j], d1.getFileName()));
+            }
         }
     }
 }
@@ -46,13 +61,21 @@ int main()
     corpus.push_back(Document("Doc4.txt"));
     corpus.push_back(Document("Doc5.txt"));
 
-    Document Plagiarized("test.txt");
+    Document Plagiarized("Plagiarized.txt");
 
-    for (int i = 0; i < corpus.size(); i++)
+    for (int i = 0; i < corpus.size(); i++) {
         BruteForce(corpus[i], Plagiarized);
+        RabinKarpFunc(corpus[i], Plagiarized);
+    }
+        
 
-    for (int i = 0; i < exact_matches.size(); i++) {
-        cout << "Exact Match Found: " << exact_matches[i].GetText() << " At: " << exact_matches[i].GetCharIndex() << " From: " << exact_matches[i].GetDocumentName() << endl;
+    for (int i = 0; i < BF_exact_matches.size(); i++) {
+        cout << "(BF) Exact Match Found: " << BF_exact_matches[i].GetText() << " At: " << BF_exact_matches[i].GetCharIndex() << " From: " << BF_exact_matches[i].GetDocumentName() << endl;
+        cout << "\n";
+    }
+
+    for (int i = 0; i < RK_exact_matches.size(); i++) {
+        cout << "(RK) Exact Match Found: " << RK_exact_matches[i].GetText() << " At: " << RK_exact_matches[i].GetCharIndex() << " From: " << RK_exact_matches[i].GetDocumentName() << endl;
         cout << "\n";
     }
 }
