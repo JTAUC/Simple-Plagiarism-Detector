@@ -28,7 +28,7 @@ void BruteForce(Document d1, Document d2) {
 
     cout << "AVG: " << (GetHammingDistances(d1_sentences, d2_sentences) / d1.getFullText().length()) * 100 << endl;
     
-    for (int i = 0; i < d2.getSentences().size(); i++) {
+    for (int i = 0; i < d2.getSentences().size(); i++) { //Sentence Matching
         int index = BFMatcher.runDetection(d1, d2_sentences[i]);
         if (index != -1) {
             exact_matches.push_back(Match(i, index, d2_sentences[i], d1.getFileName()));
@@ -40,12 +40,13 @@ int main()
 {
     vector<Document> corpus;
 
-    corpus.push_back(Document("Book1.txt"));
-    corpus.push_back(Document("Book2.txt"));
-    corpus.push_back(Document("Book3.txt"));
-    corpus.push_back(Document("Book4.txt"));
+    corpus.push_back(Document("Doc1.txt"));
+    corpus.push_back(Document("Doc2.txt"));
+    corpus.push_back(Document("Doc3.txt"));
+    corpus.push_back(Document("Doc4.txt"));
+    corpus.push_back(Document("Doc5.txt"));
 
-    Document Plagiarized("Plagiarized.txt");
+    Document Plagiarized("test.txt");
 
     for (int i = 0; i < corpus.size(); i++)
         BruteForce(corpus[i], Plagiarized);
