@@ -8,8 +8,8 @@ vector<Match> exact_matches;
 BruteForceMatcher BFMatcher;
 
 float GetHammingDistances(vector<string> s1, vector<string> s2) { //Calculates hamming distance between each sentence in two documents, 
-    int commonCharacters = 0, c = 0;                                                //if it is less than a given constant it is considered plagiarism. 
-    for (int i = 0; i < s1.size(); i++) {                                                //Function returns number of plagiarized characters.
+    int commonCharacters = 0, c = 0;                              //if it is less than a given constant it is considered plagiarism. 
+    for (int i = 0; i < s1.size(); i++) {                         //Function returns number of plagiarized characters.
         for (int j = 0; j < s2.size(); j++) {
             if (BFMatcher.HammingDistance(s1[i], s2[j], c) <= 5) {
                 commonCharacters += c;
