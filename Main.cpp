@@ -22,7 +22,7 @@ float GetHammingDistances(vector<string> s1, vector<string> s2) {
         }
     }
     return commonCharacters;
-}
+} 
 
 void BruteForce(Document d1, Document d2) {
     
