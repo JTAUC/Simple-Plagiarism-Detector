@@ -66,6 +66,7 @@ int main()
 
     Document Plagiarized("Plagiarized.txt");
 
+    cout << "Processing...\n" << endl;
     for (int i = 0; i < corpus.size(); i++) {
         BruteForce(corpus[i], Plagiarized);
         cout << "\n";
