@@ -28,7 +28,7 @@ void BruteForce(Document d1, Document d2) {
     
     vector<string> d1_sentences = d1.getSentences(), d2_sentences = d2.getSentences();
 
-    cout << "AVG: " << (GetHammingDistances(d1_sentences, d2_sentences) / d1.getFullText().length()) * 100 << endl;
+    cout << "Hamming Dists.: " << (GetHammingDistances(d1_sentences, d2_sentences) / d1.getFullText().length()) * 100 << endl;
     
     for (int i = 0; i < d2.getSentences().size(); i++) { //Sentence Matching
         int index = BFMatcher.runDetection(d1, d2_sentences[i]);
@@ -40,13 +40,12 @@ void BruteForce(Document d1, Document d2) {
 
 void RabinKarpFunc(Document d1, Document d2) {
     vector<string> d1_sentences = d1.getSentences(), d2_sentences = d2.getSentences();
+    int index = 0;
 
-    for (int i = 0; i < d1.getSentences().size(); i++) { //Sentence Matching
-        for (int j = 0; j < d2.getSentences().size(); j++) {
-            int index = 0;
-            if (RabinKarpMatcher.runDetection(d1_sentences[i], d2_sentences[j], index)) {
-                RK_exact_matches.push_back(Match(i, index, d2_sentences[j], d1.getFileName()));
-            }
+    for (int i = 0; i < d2.getSentences().size(); i++) { //Sentence Matching
+        int index = 0;
+        if (RabinKarpMatcher.runDetection(d1.getFullText(), d2_sentences[i], index)) {
+            RK_exact_matches.push_back(Match(i, index, d2_sentences[i], d1.getFileName()));
         }
     }
 }
@@ -65,7 +64,7 @@ int main()
 
     for (int i = 0; i < corpus.size(); i++) {
         BruteForce(corpus[i], Plagiarized);
-        RabinKarpFunc(corpus[i], Plagiarized);
+        RabinKarpFunc(Plagiarized, corpus[i]);
     }
         
 
