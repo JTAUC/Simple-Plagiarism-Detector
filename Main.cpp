@@ -44,12 +44,12 @@ void BruteForce(Document d1, Document d2) {
 void RabinKarpFunc(Document d1, Document d2) {
     vector<string> d1_sentences = d1.getSentences(), d2_sentences = d2.getSentences();
     int index = 0;
-
-    for (int i = 0; i < d2.getSentences().size(); i++) { //Sentence Matching
-        int index = 0;
-        if (RabinKarpMatcher.runDetection(d1.getFullText(), d2_sentences[i], index)) {
-            RK_exact_matches.push_back(Match(i, index, d2_sentences[i], d1.getFileName()));
-            RK_PlagiarizedCharCount += d2_sentences[i].length();
+    
+    for (int i = 0; i < d1.getSentences().size(); i++) { //Sentence Matching
+        cout << d1_sentences[i] << endl;
+        if (RabinKarpMatcher.runDetection(d1_sentences[i], d2.getFullText(), index)) {
+            RK_exact_matches.push_back(Match(i, index, d1_sentences[i], d2.getFileName()));
+            RK_PlagiarizedCharCount += d1_sentences[i].length();
         }
     }
 }

@@ -1,6 +1,8 @@
 #include "RabinKarp.h"
-
+#include <algorithm>
 bool RabinKarp::runDetection(string baseString, string subString, int& index) {
+	baseString.erase(remove(baseString.begin(), baseString.end(), ' '), baseString.end());
+	subString.erase(remove(subString.begin(), subString.end(), ' '), subString.end());
 	int n = baseString.length();
 	int m = subString.length();
 	int j;
@@ -26,11 +28,8 @@ bool RabinKarp::runDetection(string baseString, string subString, int& index) {
 		hashValue = (hashValue + modulus);
 	}
 
-	//cout << "hashValue: " << hashValue << endl;
-	//cout << "hashSum: " << hashSum << endl;
-
 	for (int i = 0; i < n - m; i++) {
-		//cout << hashSum << endl;
+
 		if (hashSum == hashValue) {
 			for (j = 0; j < m; j++) {
 				if (subString.at(j) != baseString.at(i + j)) {

@@ -2,6 +2,8 @@
 
 int BruteForceMatcher::runDetection(Document d, string pattern) {
 	string text = d.getFullText();
+	text.erase(remove(text.begin(), text.end(), ' '), text.end());
+	pattern.erase(remove(pattern.begin(), pattern.end(), ' '), pattern.end());
 	int n, m;
 	n = text.length() - 1;
 	m = pattern.length() - 1;
@@ -17,6 +19,8 @@ int BruteForceMatcher::runDetection(Document d, string pattern) {
 }
 
 int BruteForceMatcher::runDetection(string text, string pattern) {
+	text.erase(remove(text.begin(), text.end(), ' '), text.end());
+	pattern.erase(remove(pattern.begin(), pattern.end(), ' '), pattern.end());
 	int n, m;
 	n = text.length() - 1;
 	m = pattern.length() - 1;
@@ -32,6 +36,8 @@ int BruteForceMatcher::runDetection(string text, string pattern) {
 }
 
 int BruteForceMatcher::HammingDistance(string a, string b) {
+	a.erase(remove(a.begin(), a.end(), ' '), a.end());
+	b.erase(remove(b.begin(), b.end(), ' '), b.end());
 	int count = 0;
 	if (a.size() > b.size())
 		swap(a, b);
@@ -44,6 +50,8 @@ int BruteForceMatcher::HammingDistance(string a, string b) {
 }
 
 int BruteForceMatcher::HammingDistance(string a, string b, int& plagiarizedChars) {
+	a.erase(remove(a.begin(), a.end(), ' '), a.end());
+	b.erase(remove(b.begin(), b.end(), ' '), b.end());
 	int count = 0;
 	if (a.size() > b.size())
 		swap(a, b);
